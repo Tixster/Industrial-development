@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import  iOSIntPackage
 
 class PostTableViewCell: UITableViewCell {
     
@@ -19,6 +20,10 @@ class PostTableViewCell: UITableViewCell {
             viewsLabel.text = "Views: \(post?.views ?? 0)"
             descriptionLabel.text = post?.description
             imagePost.image = UIImage(named: post?.image ?? "placeholder")
+            loadImage(image: imagePost.image!) {[weak self] image in
+                guard let self = self else { return }
+                self.imagePost.image = image
+            }
             
         }
     }
@@ -126,6 +131,14 @@ class PostTableViewCell: UITableViewCell {
             
         })
         
+    }
+    
+    private func loadImage(image: UIImage, complition: (UIImage?)->()){
+        let processor = ImageProcessor()
+        processor.processImage(sourceImage: image, filter: .colorInvert) {
+            resultImage in
+            complition(resultImage)
+        }
     }
     
 }
