@@ -8,6 +8,7 @@
 
 import UIKit
 
+@available(iOS 13.0, *)
 class LoginViewController: UIViewController {
     
     private var accentColor = UIColor(named: "ColorSet")
@@ -207,8 +208,8 @@ class LoginViewController: UIViewController {
     }
     
     @objc private func pressLogin(){
-        performSegue(withIdentifier: "profile", sender: self)
-
+        let vc = ProfileViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     /// Keyboard observers

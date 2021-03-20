@@ -100,8 +100,8 @@ final class FeedViewController: UIViewController {
     }
     
     @objc private func openPost(){
-        performSegue(withIdentifier: "post", sender: self)
-        
+        navigationController?.pushViewController(PostViewController(), animated: true)
+
         
     }
 

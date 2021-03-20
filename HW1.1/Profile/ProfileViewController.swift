@@ -16,6 +16,7 @@ struct PostProfile {
     var description: String
 }
 
+@available(iOS 13.0, *)
 class ProfileViewController: UIViewController {
     
     let image = ProfileTableHeaderView().imageProfile
@@ -210,6 +211,7 @@ class ProfileViewController: UIViewController {
     
 }
 
+@available(iOS 13.0, *)
 extension ProfileViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
@@ -250,6 +252,7 @@ extension ProfileViewController: UITableViewDataSource {
 }
 
 
+@available(iOS 13.0, *)
 extension ProfileViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         .zero
