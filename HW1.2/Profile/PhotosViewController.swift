@@ -46,14 +46,10 @@ import UIKit
         title = "Photo Gallery"
         colletcionView.backgroundColor = .white
         
-        let constraints = [
-            colletcionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            colletcionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            colletcionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            colletcionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
-        ]
-        
-        NSLayoutConstraint.activate(constraints)
+        colletcionView.snp.makeConstraints({
+            $0.leading.trailing.top.bottom.equalToSuperview()
+        })
+
     }
     
 }

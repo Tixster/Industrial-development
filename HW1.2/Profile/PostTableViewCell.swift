@@ -83,48 +83,48 @@ class PostTableViewCell: UITableViewCell {
     
     
     private func  setupBgView() {
-        bgView.translatesAutoresizingMaskIntoConstraints = false
+        
         contentView.addSubviews(bgView)
         bgView.addSubviews(autorLabel, likesLabel, viewsLabel, descriptionLabel, imagePost)
         
         setupViews()
         
-        let constraints = [
-            bgView.heightAnchor.constraint(equalTo: contentView.heightAnchor),
-            bgView.widthAnchor.constraint(equalTo: contentView.widthAnchor)
-            
-        ]
-        
-        NSLayoutConstraint.activate(constraints)
+        bgView.snp.makeConstraints({
+            $0.width.height.equalToSuperview()
+        })
+
     }
     
     private func setupViews(){
         
-        let constraint = [
-            autorLabel.topAnchor.constraint(equalTo: bgView.topAnchor, constant: 16),
-            autorLabel.leadingAnchor.constraint(equalTo: bgView.leadingAnchor, constant: 16),
-            autorLabel.trailingAnchor.constraint(equalTo: bgView.trailingAnchor, constant: -16),
-            
-            descriptionLabel.topAnchor.constraint(equalTo: imagePost.bottomAnchor, constant: 16),
-            descriptionLabel.leadingAnchor.constraint(equalTo: bgView.leadingAnchor, constant: 16),
-            descriptionLabel.trailingAnchor.constraint(equalTo: bgView.trailingAnchor, constant: -16),
-            
-            likesLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 16),
-            likesLabel.leadingAnchor.constraint(equalTo: bgView.leadingAnchor, constant: 16),
-            likesLabel.bottomAnchor.constraint(equalTo: viewsLabel.bottomAnchor),
-            
-            viewsLabel.topAnchor.constraint(equalTo: likesLabel.topAnchor),
-            viewsLabel.trailingAnchor.constraint(equalTo: bgView.trailingAnchor, constant: -16),
-            viewsLabel.bottomAnchor.constraint(equalTo: bgView.bottomAnchor, constant: -16),
-            
-            imagePost.topAnchor.constraint(equalTo: autorLabel.bottomAnchor, constant: 16),
-            imagePost.widthAnchor.constraint(equalTo: bgView.widthAnchor),
-            imagePost.heightAnchor.constraint(equalTo: imagePost.widthAnchor),
-            imagePost.trailingAnchor.constraint(equalTo: bgView.trailingAnchor, constant: 0),
-            imagePost.leadingAnchor.constraint(equalTo: bgView.leadingAnchor, constant: 0),
-        ]
+        autorLabel.snp.makeConstraints({
+            $0.top.leading.equalTo(bgView).offset(16)
+            $0.trailing.equalTo(bgView).offset(-16)
+        })
         
-        NSLayoutConstraint.activate(constraint)
+        descriptionLabel.snp.makeConstraints({
+            $0.top.equalTo(imagePost.snp.bottom).offset(16)
+            $0.leading.equalTo(bgView).offset(16)
+            $0.trailing.equalTo(bgView).offset(-16)
+        })
+        
+        likesLabel.snp.makeConstraints({
+            $0.top.equalTo(descriptionLabel.snp.bottom).offset(16)
+            $0.leading.equalTo(bgView).offset(16)
+            $0.bottom.equalTo(viewsLabel)
+        })
+        
+        viewsLabel.snp.makeConstraints({
+            $0.top.equalTo(likesLabel)
+            $0.trailing.bottom.equalTo(bgView).offset(-16)
+        })
+        
+        imagePost.snp.makeConstraints({
+            $0.top.equalTo(autorLabel.snp.bottom).offset(16)
+            $0.width.trailing.leading.equalTo(bgView)
+            $0.height.equalTo(imagePost)
+            
+        })
         
     }
     

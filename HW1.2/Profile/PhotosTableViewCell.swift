@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 @available(iOS 13.0, *)
 class PhotosTableViewCell: UITableViewCell {
@@ -99,32 +100,29 @@ class PhotosTableViewCell: UITableViewCell {
     
     
     private func setupBgVIew(){
-        bgView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(bgView)
         setupTitle()
         setupStackView()
         
-        let constraint = [
-            bgView.heightAnchor.constraint(equalTo: contentView.heightAnchor),
-            bgView.widthAnchor.constraint(equalTo: contentView.widthAnchor)
-        ]
+        bgView.snp.makeConstraints({
+            $0.width.height.equalToSuperview()
+        })
         
-        NSLayoutConstraint.activate(constraint)
     }
     
     private func setupTitle(){
         
         bgView.addSubview(titleLabel)
         bgView.addSubview(arrowImage)
-        let constraint = [
-            titleLabel.topAnchor.constraint(equalTo: bgView.topAnchor, constant: 12),
-            titleLabel.leadingAnchor.constraint(equalTo: bgView.leadingAnchor, constant:  12),
-            
-            arrowImage.trailingAnchor.constraint(equalTo: bgView.trailingAnchor, constant: -12),
-            arrowImage.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor)
-        ]
         
-        NSLayoutConstraint.activate(constraint)
+        titleLabel.snp.makeConstraints({
+            $0.top.leading.equalTo(bgView).offset(12)
+        })
+        
+        arrowImage.snp.makeConstraints({
+            $0.trailing.equalTo(bgView).offset(-12)
+            $0.centerY.equalTo(titleLabel.snp.centerY)
+        })
         
     }
     
@@ -136,28 +134,29 @@ class PhotosTableViewCell: UITableViewCell {
         
         bgView.addSubview(photoStackView)
 
+        photoStackView.snp.makeConstraints({
+            $0.top.equalTo(titleLabel.snp.bottom).offset(12)
+            $0.leading.equalTo(bgView).offset(12)
+            $0.trailing.bottom.equalTo(bgView).offset(-12)
+            
+        })
         
-        let constraint = [
-            photoStackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 12),
-            photoStackView.leadingAnchor.constraint(equalTo: bgView.leadingAnchor, constant:  12),
-            photoStackView.trailingAnchor.constraint(equalTo: bgView.trailingAnchor, constant: -12),
-            photoStackView.bottomAnchor.constraint(equalTo: bgView.bottomAnchor, constant: -12),
-            
-       //     photoOne.widthAnchor.constraint(equalToConstant: contentView.frame.width / 4),
-            photoOne.heightAnchor.constraint(equalToConstant: contentView.frame.width / 4),
-            
-         //   photoTwo.widthAnchor.constraint(equalToConstant: contentView.frame.width / 4),
-            photoTwo.heightAnchor.constraint(equalToConstant: contentView.frame.width / 4),
-            
-          //  photoThree.widthAnchor.constraint(equalToConstant: contentView.frame.width / 4),
-            photoThree.heightAnchor.constraint(equalToConstant: contentView.frame.width / 4),
-            
-           // photoFour.widthAnchor.constraint(equalToConstant: contentView.frame.width / 4),
-            photoFour.heightAnchor.constraint(equalToConstant: contentView.frame.width / 4),
-            
-        ]
+        photoOne.snp.makeConstraints({
+            $0.height.equalTo(contentView.frame.width / 4)
+        })
         
-        NSLayoutConstraint.activate(constraint)
+        photoTwo.snp.makeConstraints({
+            $0.height.equalTo(contentView.frame.width / 4)
+        })
+        
+        photoThree.snp.makeConstraints({
+            $0.height.equalTo(contentView.frame.width / 4)
+        })
+        
+        photoFour.snp.makeConstraints({
+            $0.height.equalTo(contentView.frame.width / 4)
+        })
+
         
     }
     

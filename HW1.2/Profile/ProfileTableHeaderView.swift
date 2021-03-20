@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SnapKit
 
 
 class ProfileTableHeaderView: UITableViewHeaderFooterView {
@@ -87,7 +87,7 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
     
     
     private func setupBgView(){
-        bgView.translatesAutoresizingMaskIntoConstraints = false
+        
         contentView.addSubview(bgView)
         bgView.addSubviews(imageProfile, profileStatus, profileName, buttonStatus, textFieldStatus)
         setupImageProfile()
@@ -98,87 +98,61 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         
         bgView.backgroundColor = .white
         
-        let constraints = [
-            bgView.heightAnchor.constraint(equalTo: contentView.heightAnchor),
-            bgView.widthAnchor.constraint(equalTo: contentView.widthAnchor)
-            
-        ]
-        
-        NSLayoutConstraint.activate(constraints)
-        
+        bgView.snp.makeConstraints({
+            $0.height.width.equalToSuperview()
+        })
+
     }
     
     
     private func setupImageProfile(){
-        imageProfile.translatesAutoresizingMaskIntoConstraints = false
-            
-        let constraints = [
-            imageProfile.topAnchor.constraint(equalTo: bgView.topAnchor, constant: 16),
-            imageProfile.leadingAnchor.constraint(equalTo: bgView.leadingAnchor, constant: 16),
-            imageProfile.heightAnchor.constraint(equalToConstant: 80),
-            imageProfile.widthAnchor.constraint(equalToConstant: 80)
-            
-        ]
-        
-        NSLayoutConstraint.activate(constraints)
+     
+        imageProfile.snp.makeConstraints({
+            $0.top.leading.equalTo(bgView).offset(16)
+            $0.size.equalTo(CGSize(width: 80, height: 80))
+        })
+ 
     }
     
 
     private func setupProfileName(){
-        profileName.translatesAutoresizingMaskIntoConstraints = false
-        
-        
-        let constraints = [
-            profileName.topAnchor.constraint(equalTo: bgView.topAnchor, constant: 27),
-            profileName.leadingAnchor.constraint(equalTo: imageProfile.trailingAnchor, constant: 16),
-            
-        ]
-        
-        NSLayoutConstraint.activate(constraints)
+     
+        profileName.snp.makeConstraints({
+            $0.top.equalTo(bgView).offset(27)
+            $0.leading.equalTo(imageProfile.snp.trailing).offset(16)
+        })
     }
     
     
     private func setupProfileStatus(){
-        profileStatus.translatesAutoresizingMaskIntoConstraints = false
         
+        profileStatus.snp.makeConstraints({
+            $0.top.equalTo(profileName.snp.bottom).offset(16)
+            $0.leading.equalTo(imageProfile.snp.trailing).offset(16)
+        })
         
-        let constraints = [
-            profileStatus.topAnchor.constraint(equalTo: profileName.bottomAnchor, constant: 16),
-            profileStatus.leadingAnchor.constraint(equalTo: imageProfile.trailingAnchor, constant: 16),
-            
-        ]
-        
-        NSLayoutConstraint.activate(constraints)
     }
     
     private func setupTextFieldStatus(){
-        textFieldStatus.translatesAutoresizingMaskIntoConstraints = false
         
-        let constraints = [
-            textFieldStatus.topAnchor.constraint(equalTo: profileName.bottomAnchor, constant: 49),
-            textFieldStatus.leadingAnchor.constraint(equalTo: imageProfile.trailingAnchor, constant: 16),
-            textFieldStatus.trailingAnchor.constraint(equalTo: bgView.trailingAnchor, constant: -16),
-            textFieldStatus.heightAnchor.constraint(equalToConstant: 40)
-            
-        ]
-        
-        NSLayoutConstraint.activate(constraints)
+        textFieldStatus.snp.makeConstraints({
+            $0.top.equalTo(profileName.snp.bottom).offset(49)
+            $0.leading.equalTo(imageProfile.snp.trailing).offset(16)
+            $0.trailing.equalTo(bgView.snp.trailing).offset(-16)
+            $0.height.equalTo(40)
+        })
+ 
     }
     
     private func setupButtonStatus(){
-        buttonStatus.translatesAutoresizingMaskIntoConstraints = false
         
-        
-        let constraints = [
-            buttonStatus.topAnchor.constraint(equalTo: textFieldStatus.bottomAnchor, constant: 16),
-            buttonStatus.leadingAnchor.constraint(equalTo: bgView.leadingAnchor, constant: 16),
-            buttonStatus.trailingAnchor.constraint(equalTo: bgView.trailingAnchor, constant: -16),
-            buttonStatus.heightAnchor.constraint(equalToConstant: 50),
-            buttonStatus.bottomAnchor.constraint(equalTo: bgView.bottomAnchor, constant: -16)
-            
-        ]
-        
-        NSLayoutConstraint.activate(constraints)
+        buttonStatus.snp.makeConstraints({
+            $0.top.equalTo(textFieldStatus.snp.bottom).offset(16)
+            $0.bottom.trailing.equalTo(bgView).offset(-16)
+            $0.leading.equalTo(bgView).offset(16)
+            $0.height.equalTo(50)
+        })
+ 
     }
     
 

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 struct PostProfile {
     var autor: String
@@ -25,7 +26,6 @@ class ProfileViewController: UIViewController {
         let bgAvatarView = UIView()
         bgAvatarView.layer.opacity = 0
         bgAvatarView.backgroundColor = .black
-        bgAvatarView.translatesAutoresizingMaskIntoConstraints = false
         return bgAvatarView
     }()
     
@@ -46,7 +46,6 @@ class ProfileViewController: UIViewController {
         bgAvatarViewButton.setImage(#imageLiteral(resourceName: "cross"), for: .normal)
         bgAvatarViewButton.backgroundColor = .white
         bgAvatarViewButton.layer.opacity = 0
-        bgAvatarViewButton.translatesAutoresizingMaskIntoConstraints = false
         bgAvatarViewButton.addTarget(self, action: #selector(tapAvararVIewButton), for: .touchUpInside)
         return bgAvatarViewButton
     }()
@@ -171,41 +170,42 @@ class ProfileViewController: UIViewController {
     
     private func setupViews(){
         view.addSubview(feedTableView)
-
-        let constraints = [
-            feedTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            feedTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            feedTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            feedTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
-        ]
         
-        NSLayoutConstraint.activate(constraints)
+        feedTableView.snp.makeConstraints{
+            $0.bottom.top.trailing.leading.equalToSuperview()
+        }
     }
     
     private func setupBgAvatarView(){
         
         view.addSubview(bgAvatarView)
         setupBgAvatarViewButton()
-        let constraints = [
-            bgAvatarView.heightAnchor.constraint(equalTo: view.heightAnchor),
-            bgAvatarView.widthAnchor.constraint(equalTo: view.widthAnchor)
-        ]
         
-        NSLayoutConstraint.activate(constraints)
+        bgAvatarView.snp.makeConstraints({
+            $0.height.width.equalToSuperview()
+        })
+        
     }
     
     private func setupBgAvatarViewButton(){
         
         bgAvatarView.addSubview(bgAvatarViewButton)
-        let constraints = [
-            bgAvatarViewButton.topAnchor.constraint(equalTo: bgAvatarView.topAnchor, constant: 20),
-            bgAvatarViewButton.trailingAnchor.constraint(equalTo: bgAvatarView.trailingAnchor, constant:  -20),
-            bgAvatarViewButton.heightAnchor.constraint(equalToConstant: 20),
-            bgAvatarViewButton.widthAnchor.constraint(equalToConstant: 20),
-            
-        ]
         
-        NSLayoutConstraint.activate(constraints)
+        bgAvatarView.snp.makeConstraints({
+            $0.top.equalTo(bgAvatarView).offset(20)
+            $0.trailing.equalTo(bgAvatarView).offset(-20)
+            $0.size.equalTo(CGSize(width: 20, height: 20))
+        })
+        
+//        let constraints = [
+//            bgAvatarViewButton.topAnchor.constraint(equalTo: bgAvatarView.topAnchor, constant: 20),
+//            bgAvatarViewButton.trailingAnchor.constraint(equalTo: bgAvatarView.trailingAnchor, constant:  -20),
+//            bgAvatarViewButton.heightAnchor.constraint(equalToConstant: 20),
+//            bgAvatarViewButton.widthAnchor.constraint(equalToConstant: 20),
+//
+//        ]
+//
+//        NSLayoutConstraint.activate(constraints)
     }
     
     
