@@ -197,15 +197,7 @@ class ProfileViewController: UIViewController {
             $0.size.equalTo(CGSize(width: 20, height: 20))
         })
         
-//        let constraints = [
-//            bgAvatarViewButton.topAnchor.constraint(equalTo: bgAvatarView.topAnchor, constant: 20),
-//            bgAvatarViewButton.trailingAnchor.constraint(equalTo: bgAvatarView.trailingAnchor, constant:  -20),
-//            bgAvatarViewButton.heightAnchor.constraint(equalToConstant: 20),
-//            bgAvatarViewButton.widthAnchor.constraint(equalToConstant: 20),
-//
-//        ]
-//
-//        NSLayoutConstraint.activate(constraints)
+
     }
     
     

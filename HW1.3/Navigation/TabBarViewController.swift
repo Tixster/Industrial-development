@@ -22,7 +22,6 @@ class TabBarViewController: UITabBarController {
         
         let feedVC = UINavigationController(rootViewController: FeedViewController())
         let profileVC = UINavigationController(rootViewController: LoginViewController())
-        
         let subviewContrlolers = [feedVC, profileVC]
         
         feedVC.tabBarItem = UITabBarItem(title: "Новости", image: #imageLiteral(resourceName: "feedicon"), selectedImage: #imageLiteral(resourceName: "feedicon"))

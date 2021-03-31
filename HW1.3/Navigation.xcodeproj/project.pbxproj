@@ -18,6 +18,8 @@
 		3E2F9BCE25D9AED200CEFD57 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2F9BCD25D9AED200CEFD57 /* PhotosViewController.swift */; };
 		3E349EAD26065778006EAD77 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 3E349EAC26065778006EAD77 /* iOSIntPackage */; };
 		3E81D7C325CB32D400C1AAAB /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81D7C225CB32D400C1AAAB /* PostTableViewCell.swift */; };
+		3E8F5BB22614ED9F00F2B06B /* LoginChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8F5BB12614ED9F00F2B06B /* LoginChecker.swift */; };
+		3E8F5BB32614ED9F00F2B06B /* LoginChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8F5BB12614ED9F00F2B06B /* LoginChecker.swift */; };
 		3E8FC9E725C8B42900302A64 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8FC9E625C8B42900302A64 /* LoginViewController.swift */; };
 		3E900DE825DA942E0002E1CE /* PhotosStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E900DE725DA942E0002E1CE /* PhotosStorage.swift */; };
 		3E900DEB25DA99DF0002E1CE /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E900DEA25DA99DF0002E1CE /* PhotosCollectionViewCell.swift */; };
@@ -58,6 +60,7 @@
 		3CEA55A7584C697567741271 /* Pods-Navigation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation.release.xcconfig"; path = "Target Support Files/Pods-Navigation/Pods-Navigation.release.xcconfig"; sourceTree = "<group>"; };
 		3E2F9BCD25D9AED200CEFD57 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		3E81D7C225CB32D400C1AAAB /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		3E8F5BB12614ED9F00F2B06B /* LoginChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginChecker.swift; sourceTree = "<group>"; };
 		3E8FC9E625C8B42900302A64 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3E900DE725DA942E0002E1CE /* PhotosStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosStorage.swift; sourceTree = "<group>"; };
 		3E900DEA25DA99DF0002E1CE /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -142,6 +145,7 @@
 				3E900DEA25DA99DF0002E1CE /* PhotosCollectionViewCell.swift */,
 				3E900DE725DA942E0002E1CE /* PhotosStorage.swift */,
 				3E8FC9E625C8B42900302A64 /* LoginViewController.swift */,
+				3E8F5BB12614ED9F00F2B06B /* LoginChecker.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -341,6 +345,7 @@
 				3E8FC9E725C8B42900302A64 /* LoginViewController.swift in Sources */,
 				060782B6250CE27700A87020 /* FeedViewController.swift in Sources */,
 				3EFB8C9E26062FCC00BD227C /* TabBarViewController.swift in Sources */,
+				3E8F5BB22614ED9F00F2B06B /* LoginChecker.swift in Sources */,
 				060782B2250CE27700A87020 /* AppDelegate.swift in Sources */,
 				3EE5000225D9709700BD8B01 /* PhotosTableViewCell.swift in Sources */,
 				060782C6250CEB0A00A87020 /* InfoViewController.swift in Sources */,
@@ -362,6 +367,7 @@
 				3EFB8CA5260631C500BD227C /* LoginViewController.swift in Sources */,
 				3EFB8CA6260631C500BD227C /* FeedViewController.swift in Sources */,
 				3EFB8CA7260631C500BD227C /* TabBarViewController.swift in Sources */,
+				3E8F5BB32614ED9F00F2B06B /* LoginChecker.swift in Sources */,
 				3EFB8CA8260631C500BD227C /* AppDelegate.swift in Sources */,
 				3EFB8CA9260631C500BD227C /* PhotosTableViewCell.swift in Sources */,
 				3EFB8CAA260631C500BD227C /* InfoViewController.swift in Sources */,
@@ -512,7 +518,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7MH8KA7J8V;
 				INFOPLIST_FILE = Navigation/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -532,7 +538,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7MH8KA7J8V;
 				INFOPLIST_FILE = Navigation/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

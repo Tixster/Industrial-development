@@ -7,15 +7,23 @@
 //
 
 import UIKit
+import SnapKit
+
+protocol LoginViewControllerDelegate: class {
+    func loginCheck(log: String) -> Bool
+    func pasCheck(pas: String) -> Bool
+}
 
 @available(iOS 13.0, *)
 class LoginViewController: UIViewController {
     
+    private var delegate: LoginViewControllerDelegate?
+    
     private var accentColor = UIColor(named: "ColorSet")
     private var imageLogo = UIImageView(image: #imageLiteral(resourceName: "logo"))
     private var stackView = UIStackView()
-    private var emailTextField = UITextField()
-    private var passwordTextField = UITextField()
+     var emailTextField = UITextField()
+     var passwordTextField = UITextField()
     private var bgTextField = UIView()
     private var line = UIView()
     private var contetnView = UIView()
@@ -26,31 +34,26 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
         setupScrollView()
+        delegate = LoginInspector()
     }
     
     // MARK: - ScrollView
     
     func setupScrollView(){
 
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(scrollView)
         setupContentView()
 
-        let constraints = [
-            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            
-        ]
-        
-        NSLayoutConstraint.activate(constraints)
+        scrollView.snp.makeConstraints({
+            $0.bottom.top.leading.trailing.equalToSuperview()
+        })
+
     }
     
     //MARK: - Content
     
     private func setupContentView(){
-        contetnView.translatesAutoresizingMaskIntoConstraints = false
+
         scrollView.addSubview(contetnView)
 
         setupImageLogo()
@@ -59,25 +62,16 @@ class LoginViewController: UIViewController {
         
         contetnView.backgroundColor = .white
         
-    
-        let constraints = [
-            
-            contetnView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            contetnView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            contetnView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            contetnView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            contetnView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-        ]
-    
-        NSLayoutConstraint.activate(constraints)
-
+        contetnView.snp.makeConstraints({
+            $0.top.bottom.width.equalTo(scrollView)
+        })
+        
     }
     
     //MARK: - Logo
     private func setupImageLogo() {
         imageLogo.translatesAutoresizingMaskIntoConstraints = false
         contetnView.addSubview(imageLogo)
-
 
         let constraints = [
             imageLogo.topAnchor.constraint(equalTo: contetnView.topAnchor, constant: 120),
@@ -97,7 +91,6 @@ class LoginViewController: UIViewController {
         bgTextField.addSubview(passwordTextField)
         bgTextField.addSubview(line)
 
-        bgTextField.translatesAutoresizingMaskIntoConstraints = false
         bgTextField.layer.cornerRadius = 10
         bgTextField.layer.borderWidth = 0.5
         bgTextField.layer.borderColor = UIColor.lightGray.cgColor
@@ -107,18 +100,16 @@ class LoginViewController: UIViewController {
         setupPasswordextField()
         setupLine()
 
-        let constraints = [
-            bgTextField.heightAnchor.constraint(equalToConstant: 100),
-            bgTextField.topAnchor.constraint(equalTo: imageLogo.bottomAnchor, constant: 120),
-            bgTextField.trailingAnchor.constraint(equalTo: contetnView.trailingAnchor, constant: -16),
-            bgTextField.leadingAnchor.constraint(equalTo: contetnView.leadingAnchor, constant: 16),
-        ]
+        bgTextField.snp.makeConstraints({
+            $0.height.equalTo(100)
+            $0.top.equalTo(imageLogo.snp.bottom).offset(120)
+            $0.trailing.equalTo(contetnView.snp.trailing).offset(-16)
+            $0.leading.equalTo(contetnView.snp.leading).offset(16)
+        })
 
-        NSLayoutConstraint.activate(constraints)
     }
 
     private func setupEmailTextField(){
-        emailTextField.translatesAutoresizingMaskIntoConstraints = false
 
         emailTextField.attributedPlaceholder = NSAttributedString(string: "Email or phone", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         emailTextField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
@@ -127,18 +118,15 @@ class LoginViewController: UIViewController {
         emailTextField.leftViewMode = .always
         emailTextField.tintColor = accentColor
 
-        let constraints = [
-            emailTextField.topAnchor.constraint(equalTo: bgTextField.topAnchor),
-            emailTextField.bottomAnchor.constraint(equalTo: line.topAnchor),
-            emailTextField.leadingAnchor.constraint(equalTo: bgTextField.leadingAnchor, constant: 10),
-            emailTextField.trailingAnchor.constraint(equalTo: bgTextField.trailingAnchor)
-        ]
-
-        NSLayoutConstraint.activate(constraints)
+        emailTextField.snp.makeConstraints({
+            $0.top.trailing.equalTo(bgTextField)
+            $0.bottom.equalTo(line.snp.top)
+            $0.leading.equalTo(bgTextField.snp.leading).offset(10)
+        })
+        
     }
 
     private func setupPasswordextField(){
-        passwordTextField.translatesAutoresizingMaskIntoConstraints = false
 
         passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         passwordTextField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
@@ -148,41 +136,29 @@ class LoginViewController: UIViewController {
         passwordTextField.leftViewMode = .always
         passwordTextField.isSecureTextEntry = true
 
-
-        let constraints = [
-            passwordTextField.topAnchor.constraint(equalTo: line.bottomAnchor),
-            passwordTextField.bottomAnchor.constraint(equalTo: bgTextField.bottomAnchor),
-            passwordTextField.leadingAnchor.constraint(equalTo: bgTextField.leadingAnchor, constant: 10),
-            passwordTextField.trailingAnchor.constraint(equalTo: bgTextField.trailingAnchor)
-
-        ]
-
-        NSLayoutConstraint.activate(constraints)
+        passwordTextField.snp.makeConstraints({
+            $0.bottom.trailing.equalTo(bgTextField)
+            $0.top.equalTo(line.snp.bottom)
+            $0.leading.equalTo(bgTextField.snp.leading).offset(10)
+        })
+        
     }
 
-
-
-
     private func setupLine() {
-        line.translatesAutoresizingMaskIntoConstraints = false
 
         line.backgroundColor = .lightGray
 
-        let constraints = [
-            line.centerYAnchor.constraint(equalTo: bgTextField.centerYAnchor),
-            line.centerXAnchor.constraint(equalTo: bgTextField.centerXAnchor),
-            line.heightAnchor.constraint(equalToConstant: 0.5),
-            line.widthAnchor.constraint(equalTo: bgTextField.widthAnchor)
-        ]
-
-        NSLayoutConstraint.activate(constraints)
+        line.snp.makeConstraints({
+            $0.centerX.centerY.width.equalTo(bgTextField)
+            $0.height.equalTo(0.5)
+        })
 
     }
     
     // MARK: - Button
     
     func setupButtonLogin(){
-        buttonLogin.translatesAutoresizingMaskIntoConstraints = false
+        
         contetnView.addSubview(buttonLogin)
         
         buttonLogin.setTitle("Login", for: .normal)
@@ -195,21 +171,32 @@ class LoginViewController: UIViewController {
         
         buttonLogin.addTarget(self, action: #selector(pressLogin), for: .touchUpInside)
         
-        let constraints = [
-            buttonLogin.topAnchor.constraint(equalTo: bgTextField.bottomAnchor, constant: 16),
-            buttonLogin.leadingAnchor.constraint(equalTo: contetnView.leadingAnchor, constant: 16),
-            buttonLogin.trailingAnchor.constraint(equalTo: contetnView.trailingAnchor, constant: -16),
-            buttonLogin.heightAnchor.constraint(equalToConstant: 50),
-            buttonLogin.bottomAnchor.constraint(equalTo: contetnView.bottomAnchor, constant: -16)
-        ]
-        
-        NSLayoutConstraint.activate(constraints)
+        buttonLogin.snp.makeConstraints({
+            $0.top.equalTo(bgTextField.snp.bottom).offset(16)
+            $0.leading.equalTo(contetnView).offset(16)
+            $0.trailing.bottom.equalTo(contetnView).offset(-16)
+            $0.height.equalTo(50)
+        })
         
     }
     
     @objc private func pressLogin(){
-        let vc = ProfileViewController()
-        navigationController?.pushViewController(vc, animated: true)
+
+        guard let inspetcor = delegate else { return }
+        guard let loginText = emailTextField.text, let passwordText = passwordTextField.text else { return print("Неверный логин")  }
+        
+        let login = inspetcor.loginCheck(log: loginText)
+        let password = inspetcor.pasCheck(pas: passwordText)
+    
+        if login == true && password == true{
+            let vc = ProfileViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        } else if login == false  {
+            print("Неверный логин")
+        } else if login == true && password == false {
+            print("Неверный пароль")
+        }
+
     }
     
     /// Keyboard observers
@@ -251,3 +238,5 @@ extension UIImage {
         return newImage!
     }
 }
+
+
