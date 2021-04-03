@@ -16,4 +16,9 @@ class PostViewController: UIViewController {
         super.viewDidLoad()
         title = post?.title
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = false
+    }
 }

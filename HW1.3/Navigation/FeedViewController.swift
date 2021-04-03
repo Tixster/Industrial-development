@@ -7,16 +7,25 @@
 //
 
 import UIKit
+import SnapKit
+
+protocol FeedViewOutput {
+    func showPost(post: Post)
+    var navigationController: UINavigationController? { get set}
+}
 
 final class FeedViewController: UIViewController {
     
-    let post: Post = Post(title: "Пост")
+    private var output: FeedViewOutput? = {
+        let output = PostPresenter()
+        return output
+    }()
     
-    private var verticalSctackView = UIStackView()
-    private var buttomOneSV = UIButton(type: .system)
-    private var buttomTwoSV = UIButton(type: .system)
-    
-    
+    private lazy var containerView: UIStackView = {
+        var stack = ContainerView()
+        stack.onTap = output?.showPost(post: )
+        return stack
+    }()
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -25,62 +34,58 @@ final class FeedViewController: UIViewController {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(verticalSctackView)
-        setupStackView()
-
-
+        output?.navigationController = navigationController
+        view.addSubview(containerView)
+        setupContainerView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
         print(type(of: self), #function)
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        print(type(of: self), #function)
+
+    private func setupContainerView(){
+        containerView.snp.makeConstraints({
+            $0.centerX.centerY.equalToSuperview()
+        })
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        print(type(of: self), #function)
+}
+
+
+class ContainerView: UIStackView {
+    
+    let post: Post = Post(title: "Пост")
+    
+    var onTap: ((Post) -> Void)?
+    
+    private var buttomOneSV = UIButton(type: .system)
+    private var buttomTwoSV = UIButton(type: .system)
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupStackView()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        print(type(of: self), #function)
-    }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        print(type(of: self), #function)
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
+    required init(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     func setupStackView(){
-        verticalSctackView.translatesAutoresizingMaskIntoConstraints = false
+        self.axis = .vertical
+        self.spacing = 10
+        self.distribution = .fillEqually
         
-        verticalSctackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        verticalSctackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        
-        verticalSctackView.axis = .vertical
-        verticalSctackView.spacing = 10
-        verticalSctackView.distribution = .fillEqually
-        
-        verticalSctackView.addArrangedSubview(buttomOneSV)
-        verticalSctackView.addArrangedSubview(buttomTwoSV)
+        self.addArrangedSubview(buttomOneSV)
+        self.addArrangedSubview(buttomTwoSV)
         
         setupButtomOne()
         setupButtomTwo()
-
     }
     
     func setupButtomOne(){
@@ -100,9 +105,19 @@ final class FeedViewController: UIViewController {
     }
     
     @objc private func openPost(){
-        navigationController?.pushViewController(PostViewController(), animated: true)
-
-        
+        guard let onTap = onTap else { return }
+        onTap(post)
     }
 
+}
+
+class PostPresenter: FeedViewOutput {
+    var navigationController: UINavigationController?
+
+    func showPost(post: Post) {
+        let postVC = PostViewController()
+        postVC.post = post
+        navigationController?.pushViewController(postVC, animated: true)
+    }
+    
 }

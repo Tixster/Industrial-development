@@ -123,13 +123,13 @@
 			children = (
 				060782B1250CE27700A87020 /* AppDelegate.swift */,
 				060782B5250CE27700A87020 /* FeedViewController.swift */,
+				060782C7250CEE5D00A87020 /* PostViewController.swift */,
+				060782C5250CEB0A00A87020 /* InfoViewController.swift */,
+				060782C9250CEE7200A87020 /* Post.swift */,
+				3EFB8C9D26062FCC00BD227C /* TabBarViewController.swift */,
 				060782BA250CE27A00A87020 /* Assets.xcassets */,
 				060782BC250CE27A00A87020 /* LaunchScreen.storyboard */,
 				060782BF250CE27A00A87020 /* Info.plist */,
-				060782C5250CEB0A00A87020 /* InfoViewController.swift */,
-				060782C7250CEE5D00A87020 /* PostViewController.swift */,
-				060782C9250CEE7200A87020 /* Post.swift */,
-				3EFB8C9D26062FCC00BD227C /* TabBarViewController.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
