@@ -14,6 +14,7 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
     
     private var bgView = UIView()
     
+    
    var imageProfile: UIImageView = {
         let imageProfile = UIImageView()
         imageProfile.image = UIImage(named: "hipster cat")

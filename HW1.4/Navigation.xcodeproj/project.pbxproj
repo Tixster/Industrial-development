@@ -17,6 +17,7 @@
 		340151414D089FF202754D52 /* Pods_Navigation_copy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F17D107900EE1A83AEEE953 /* Pods_Navigation_copy.framework */; };
 		3E2F9BCE25D9AED200CEFD57 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2F9BCD25D9AED200CEFD57 /* PhotosViewController.swift */; };
 		3E349EAD26065778006EAD77 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 3E349EAC26065778006EAD77 /* iOSIntPackage */; };
+		3E744BFD2619F62B00F6099D /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E744BFC2619F62B00F6099D /* Coordinator.swift */; };
 		3E81D7C325CB32D400C1AAAB /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81D7C225CB32D400C1AAAB /* PostTableViewCell.swift */; };
 		3E8F5BB22614ED9F00F2B06B /* LoginChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8F5BB12614ED9F00F2B06B /* LoginChecker.swift */; };
 		3E8F5BB32614ED9F00F2B06B /* LoginChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8F5BB12614ED9F00F2B06B /* LoginChecker.swift */; };
@@ -59,6 +60,7 @@
 		1E478E26ACCD9EB5D05E1214 /* Pods-Navigation copy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation copy.release.xcconfig"; path = "Target Support Files/Pods-Navigation copy/Pods-Navigation copy.release.xcconfig"; sourceTree = "<group>"; };
 		3CEA55A7584C697567741271 /* Pods-Navigation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation.release.xcconfig"; path = "Target Support Files/Pods-Navigation/Pods-Navigation.release.xcconfig"; sourceTree = "<group>"; };
 		3E2F9BCD25D9AED200CEFD57 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
+		3E744BFC2619F62B00F6099D /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		3E81D7C225CB32D400C1AAAB /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		3E8F5BB12614ED9F00F2B06B /* LoginChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginChecker.swift; sourceTree = "<group>"; };
 		3E8FC9E625C8B42900302A64 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 		060782A5250CE27700A87020 = {
 			isa = PBXGroup;
 			children = (
+				3E744BFB2619F60000F6099D /* Coordinators */,
 				3EE235C125B6F811004151BF /* Profile */,
 				060782B0250CE27700A87020 /* Navigation */,
 				060782AF250CE27700A87020 /* Products */,
@@ -132,6 +135,14 @@
 				060782BF250CE27A00A87020 /* Info.plist */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		3E744BFB2619F60000F6099D /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				3E744BFC2619F62B00F6099D /* Coordinator.swift */,
+			);
+			name = Coordinators;
 			sourceTree = "<group>";
 		};
 		3EE235C125B6F811004151BF /* Profile */ = {
@@ -349,6 +360,7 @@
 				060782B2250CE27700A87020 /* AppDelegate.swift in Sources */,
 				3EE5000225D9709700BD8B01 /* PhotosTableViewCell.swift in Sources */,
 				060782C6250CEB0A00A87020 /* InfoViewController.swift in Sources */,
+				3E744BFD2619F62B00F6099D /* Coordinator.swift in Sources */,
 				3EE235C325B6F894004151BF /* ProfileTableHeaderView.swift in Sources */,
 				060782CA250CEE7200A87020 /* Post.swift in Sources */,
 				3E81D7C325CB32D400C1AAAB /* PostTableViewCell.swift in Sources */,

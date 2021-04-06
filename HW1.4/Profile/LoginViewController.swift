@@ -17,6 +17,7 @@ protocol LoginViewControllerDelegate: class {
 @available(iOS 13.0, *)
 class LoginViewController: UIViewController {
     
+    weak var coordinator: LoginCoordinator?
     private var delegate: LoginViewControllerDelegate?
     
     private var accentColor = UIColor(named: "ColorSet")
@@ -189,8 +190,12 @@ class LoginViewController: UIViewController {
         let password = inspetcor.pasCheck(pas: passwordText)
     
         if login == true && password == true{
-            let vc = ProfileViewController()
-            navigationController?.pushViewController(vc, animated: true)
+            
+            coordinator?.subscription()
+            
+//            let vc = ProfileViewController()
+//            navigationController?.pushViewController(vc, animated: true)
+            
         } else if login == false  {
             print("Неверный логин")
         } else if login == true && password == false {

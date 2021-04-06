@@ -13,14 +13,15 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var coordinator: MainCoordinator?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-        let tabBar = TabBarViewController()
-        
+
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = tabBar
-        window?.makeKeyAndVisible()
+        guard let window = window else { return false }
+        
+        coordinator = .init(window: window)
+        
         print(type(of: self), #function)
 
         return true

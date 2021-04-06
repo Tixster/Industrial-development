@@ -15,7 +15,7 @@ protocol FeedViewOutput {
 }
 
 final class FeedViewController: UIViewController {
-    
+        
     private var output: FeedViewOutput? = {
         let output = PostPresenter()
         return output
