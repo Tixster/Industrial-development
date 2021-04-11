@@ -9,10 +9,9 @@
 import UIKit
 
  class PhotosViewController: UIViewController {
-    
+        
     private lazy var colletcionView: UICollectionView = {
        let layout = UICollectionViewFlowLayout()
-
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.dataSource = self
@@ -25,8 +24,8 @@ import UIKit
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-
-        setupView()
+        
+       setupView()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -57,6 +56,7 @@ import UIKit
 extension PhotosViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return StoragePhoto.imagePhoto.count
+        
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -84,6 +84,5 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
         guard let photoCell = cell as? PhotosCollectionViewCell else { return }
         photoCell.photo = StoragePhoto.imagePhoto[indexPath.item]
     }
-    
     
 }

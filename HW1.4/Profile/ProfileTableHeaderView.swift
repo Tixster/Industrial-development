@@ -14,8 +14,7 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
     
     private var bgView = UIView()
     
-    
-   var imageProfile: UIImageView = {
+    var imageProfile: UIImageView = {
         let imageProfile = UIImageView()
         imageProfile.image = UIImage(named: "hipster cat")
         imageProfile.contentMode = .scaleAspectFill
@@ -24,7 +23,7 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         imageProfile.layer.borderWidth = 3
         imageProfile.layer.borderColor = UIColor.lightGray.cgColor
         imageProfile.isUserInteractionEnabled = true
- 
+        
         return imageProfile
     }()
     
@@ -102,22 +101,22 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         bgView.snp.makeConstraints({
             $0.height.width.equalToSuperview()
         })
-
+        
     }
     
     
     private func setupImageProfile(){
-     
+        
         imageProfile.snp.makeConstraints({
             $0.top.leading.equalTo(bgView).offset(16)
             $0.size.equalTo(CGSize(width: 80, height: 80))
         })
- 
+        
     }
     
-
+    
     private func setupProfileName(){
-     
+        
         profileName.snp.makeConstraints({
             $0.top.equalTo(bgView).offset(27)
             $0.leading.equalTo(imageProfile.snp.trailing).offset(16)
@@ -142,7 +141,7 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
             $0.trailing.equalTo(bgView.snp.trailing).offset(-16)
             $0.height.equalTo(40)
         })
- 
+        
     }
     
     private func setupButtonStatus(){
@@ -153,10 +152,10 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
             $0.leading.equalTo(bgView).offset(16)
             $0.height.equalTo(50)
         })
- 
+        
     }
     
-
+    
     @objc private func buttonStatusTapped(){
         profileStatus.text = statusText
         textFieldStatus.text = nil
@@ -169,7 +168,7 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         setupBgView()
- 
+        
     }
     
     required init?(coder: NSCoder) {

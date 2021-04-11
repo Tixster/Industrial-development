@@ -16,16 +16,18 @@ protocol FeedViewOutput {
 
 final class FeedViewController: UIViewController {
         
-    private var output: FeedViewOutput? = {
-        let output = PostPresenter()
-        return output
-    }()
+    private var output: FeedViewOutput?
     
     private lazy var containerView: UIStackView = {
         var stack = ContainerView()
         stack.onTap = output?.showPost(post: )
         return stack
     }()
+    
+    init(output: FeedViewOutput){
+        self.output = output
+        super.init(nibName: nil, bundle: nil)
+    }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)

@@ -30,11 +30,12 @@ class MainCoordinator: Coordinator {
 
 class FeedCoordinator: Coordinator {
     var childCoordinators = [Coordinator]()
-
-    var rootViewController: UIViewController = FeedViewController()
+    
+    var presenter: FeedViewOutput = PostPresenter()
     var navigationController: UINavigationController?
     
     init() {
+        let rootViewController = FeedViewController(output: presenter)
         navigationController = .init(rootViewController: rootViewController)
         rootViewController.tabBarItem = UITabBarItem(title: "Новости", image: #imageLiteral(resourceName: "feedicon"), selectedImage: #imageLiteral(resourceName: "feedicon"))
         rootViewController.tabBarItem.tag = 0
@@ -49,36 +50,32 @@ class FeedCoordinator: Coordinator {
 class LoginCoordinator: Coordinator {
     var childCoordinators = [Coordinator]()
     
-    var rootViewController: UIViewController
+    var rootViewController = LoginViewController()
     var navigationController: UINavigationController?
     
     init() {
-
-        let vc = LoginViewController()
-        rootViewController = vc
-        
+        rootViewController.coordinator = self
         navigationController = UINavigationController(rootViewController: rootViewController)
 
         rootViewController.tabBarItem = UITabBarItem(title: "Профиль", image: #imageLiteral(resourceName: "profileicon"), selectedImage: #imageLiteral(resourceName: "profileicon"))
         rootViewController.tabBarItem.tag = 1
-        vc.coordinator = self
 
     }
     
     func start() {
+  
     }
     
     func subscription(){
-
-        guard let nav = navigationController else { return }
         
-        let child = ProfileCoordinator(nav: nav)
+        let child = ProfileCoordinator(navigation: navigationController)
         childCoordinators.append(child)
         child.parentCoordinator = self
         child.start()
     }
     
 }
+
 class ProfileCoordinator: Coordinator {
     var childCoordinators = [Coordinator]()
     
@@ -86,8 +83,8 @@ class ProfileCoordinator: Coordinator {
     
     var navigationController: UINavigationController?
     
-    init(nav: UINavigationController) {
-        self.navigationController = nav
+    init(navigation: UINavigationController?) {
+        self.navigationController = navigation
     }
     
     func start() {

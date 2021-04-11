@@ -184,7 +184,7 @@ class LoginViewController: UIViewController {
     @objc private func pressLogin(){
 
         guard let inspetcor = delegate else { return }
-        guard let loginText = emailTextField.text, let passwordText = passwordTextField.text else { return print("Неверный логин")  }
+        guard let loginText = emailTextField.text, let passwordText = passwordTextField.text else { return print("Неверные данные!")  }
         
         let login = inspetcor.loginCheck(log: loginText)
         let password = inspetcor.pasCheck(pas: passwordText)
@@ -196,10 +196,8 @@ class LoginViewController: UIViewController {
 //            let vc = ProfileViewController()
 //            navigationController?.pushViewController(vc, animated: true)
             
-        } else if login == false  {
-            print("Неверный логин")
-        } else if login == true && password == false {
-            print("Неверный пароль")
+        } else {
+            print("Неверные данные!")
         }
 
     }

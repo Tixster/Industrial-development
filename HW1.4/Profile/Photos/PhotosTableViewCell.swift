@@ -138,7 +138,6 @@ class PhotosTableViewCell: UITableViewCell {
             $0.top.equalTo(titleLabel.snp.bottom).offset(12)
             $0.leading.equalTo(bgView).offset(12)
             $0.trailing.bottom.equalTo(bgView).offset(-12)
-            
         })
         
         photoOne.snp.makeConstraints({
@@ -156,8 +155,6 @@ class PhotosTableViewCell: UITableViewCell {
         photoFour.snp.makeConstraints({
             $0.height.equalTo(contentView.frame.width / 4)
         })
-
-        
     }
     
 }
