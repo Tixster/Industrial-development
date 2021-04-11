@@ -11,8 +11,8 @@ import Foundation
 struct LoginChecker {
     static let shared = LoginChecker()
     
-    private let login = "1"
-    private let password = "1"
+    let login = "1"
+    let password = "120"
     
     private init(){}
     

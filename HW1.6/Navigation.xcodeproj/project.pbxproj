@@ -20,6 +20,8 @@
 		3E744BFD2619F62B00F6099D /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E744BFC2619F62B00F6099D /* Coordinator.swift */; };
 		3E81D7C325CB32D400C1AAAB /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81D7C225CB32D400C1AAAB /* PostTableViewCell.swift */; };
 		3E8E81E22621D68A00CC6ED9 /* Pods_Navigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92805BD5B786B05BFF6756D3 /* Pods_Navigation.framework */; };
+		3E8F3CD52623705700762E56 /* BruteForce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8F3CD42623705700762E56 /* BruteForce.swift */; };
+		3E8F3CD62623705700762E56 /* BruteForce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8F3CD42623705700762E56 /* BruteForce.swift */; };
 		3E8F5BB22614ED9F00F2B06B /* LoginChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8F5BB12614ED9F00F2B06B /* LoginChecker.swift */; };
 		3E8F5BB32614ED9F00F2B06B /* LoginChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8F5BB12614ED9F00F2B06B /* LoginChecker.swift */; };
 		3E8FC9E725C8B42900302A64 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8FC9E625C8B42900302A64 /* LoginViewController.swift */; };
@@ -62,6 +64,7 @@
 		3E2F9BCD25D9AED200CEFD57 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		3E744BFC2619F62B00F6099D /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		3E81D7C225CB32D400C1AAAB /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		3E8F3CD42623705700762E56 /* BruteForce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BruteForce.swift; sourceTree = "<group>"; };
 		3E8F5BB12614ED9F00F2B06B /* LoginChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginChecker.swift; sourceTree = "<group>"; };
 		3E8FC9E625C8B42900302A64 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3E900DE725DA942E0002E1CE /* PhotosStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosStorage.swift; sourceTree = "<group>"; };
@@ -161,6 +164,7 @@
 			children = (
 				3E8FC9E625C8B42900302A64 /* LoginViewController.swift */,
 				3E8F5BB12614ED9F00F2B06B /* LoginChecker.swift */,
+				3E8F3CD42623705700762E56 /* BruteForce.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -374,6 +378,7 @@
 				3EFB8C9E26062FCC00BD227C /* TabBarViewController.swift in Sources */,
 				3E8F5BB22614ED9F00F2B06B /* LoginChecker.swift in Sources */,
 				060782B2250CE27700A87020 /* AppDelegate.swift in Sources */,
+				3E8F3CD52623705700762E56 /* BruteForce.swift in Sources */,
 				3EE5000225D9709700BD8B01 /* PhotosTableViewCell.swift in Sources */,
 				060782C6250CEB0A00A87020 /* InfoViewController.swift in Sources */,
 				3E744BFD2619F62B00F6099D /* Coordinator.swift in Sources */,
@@ -402,6 +407,7 @@
 				3EFB8CAB260631C500BD227C /* ProfileTableHeaderView.swift in Sources */,
 				3EFB8CAC260631C500BD227C /* Post.swift in Sources */,
 				3EFB8CAD260631C500BD227C /* PostTableViewCell.swift in Sources */,
+				3E8F3CD62623705700762E56 /* BruteForce.swift in Sources */,
 				3EFB8CAE260631C500BD227C /* PhotosViewController.swift in Sources */,
 				3EFB8CAF260631C500BD227C /* ProfileViewController.swift in Sources */,
 				3EFB8CB0260631C500BD227C /* PostViewController.swift in Sources */,

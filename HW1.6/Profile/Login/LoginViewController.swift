@@ -20,6 +20,8 @@ class LoginViewController: UIViewController {
     weak var coordinator: LoginCoordinator?
     private var delegate: LoginViewControllerDelegate?
     
+    
+    
     private var accentColor = UIColor(named: "ColorSet")
     private var imageLogo = UIImageView(image: #imageLiteral(resourceName: "logo"))
     private var stackView = UIStackView()
@@ -31,6 +33,18 @@ class LoginViewController: UIViewController {
     private var scrollView = UIScrollView()
     private var buttonLogin = UIButton()
     
+    private var bruteForceButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Подобрать пароль", for: .normal)
+        button.setTitleColor(.red, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        button.addTarget(self, action: #selector(tapBruteForce), for: .touchUpInside)
+        return button
+    }()
+    
+    private var activityIndicator = UIActivityIndicatorView(style: .large)
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
@@ -41,7 +55,7 @@ class LoginViewController: UIViewController {
     // MARK: - ScrollView
     
     func setupScrollView(){
-
+        
         view.addSubview(scrollView)
         setupContentView()
 
@@ -60,6 +74,7 @@ class LoginViewController: UIViewController {
         setupImageLogo()
         setupBgTextField()
         setupButtonLogin()
+        setupBruteForceButton()
         
         contetnView.backgroundColor = .white
         
@@ -128,7 +143,8 @@ class LoginViewController: UIViewController {
     }
 
     private func setupPasswordextField(){
-
+        
+        
         passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         passwordTextField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         passwordTextField.textColor = .black
@@ -179,6 +195,44 @@ class LoginViewController: UIViewController {
             $0.height.equalTo(50)
         })
         
+    }
+    
+    private func setupBruteForceButton(){
+        contetnView.addSubview(bruteForceButton)
+        
+        bruteForceButton.snp.makeConstraints({
+            $0.top.equalTo(imageLogo.snp.bottom).offset(30)
+            $0.centerX.equalTo(imageLogo)
+        })
+    }
+    
+    private func setupActivityIndicator(){
+        passwordTextField.addSubview(activityIndicator)
+        activityIndicator.snp.makeConstraints({
+            $0.centerX.centerY.equalTo(passwordTextField)
+        })
+    }
+    
+    @objc private func tapBruteForce(){
+        let groupQueue = DispatchGroup()
+        let bruteForceQueue = DispatchQueue(label: "bruteForce", qos: .background, attributes: .concurrent)
+        var hackedPassword: String?
+        
+        setupActivityIndicator()
+        activityIndicator.startAnimating()
+        
+        groupQueue.enter()
+        bruteForceQueue.async {
+            let brute = BruteForce()
+            hackedPassword = brute.bruteForce(passwordToUnlock: LoginChecker.shared.password)
+            groupQueue.leave()
+        }
+        groupQueue.notify(queue: .main, execute: {
+            self.passwordTextField.isSecureTextEntry = false
+            self.passwordTextField.text = hackedPassword
+            self.activityIndicator.stopAnimating()
+            self.activityIndicator.removeFromSuperview()
+        })
     }
     
     @objc private func pressLogin(){
