@@ -17,7 +17,7 @@ protocol FeedViewOutput {
 final class FeedViewController: UIViewController {
         
     private var output: FeedViewOutput?
-    
+
     private lazy var containerView: UIStackView = {
         var stack = ContainerView()
         stack.onTap = output?.showPost(post: )
@@ -43,12 +43,19 @@ final class FeedViewController: UIViewController {
         output?.navigationController = navigationController
         view.addSubview(containerView)
         setupContainerView()
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
+
         print(type(of: self), #function)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
     }
 
     private func setupContainerView(){
@@ -56,7 +63,7 @@ final class FeedViewController: UIViewController {
             $0.centerX.centerY.equalToSuperview()
         })
     }
-    
+
 }
 
 
