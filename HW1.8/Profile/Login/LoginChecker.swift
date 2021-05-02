@@ -8,6 +8,10 @@
 
 import Foundation
 
+enum LoginError: Error {
+    case invalidLogin
+}
+
 struct LoginChecker {
     static let shared = LoginChecker()
     

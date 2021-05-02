@@ -235,23 +235,38 @@ class LoginViewController: UIViewController {
         })
     }
     
-    @objc private func pressLogin(){
+    @objc private func pressLogin() throws {
 
-        guard let inspetcor = delegate else { return }
-        guard let loginText = emailTextField.text, let passwordText = passwordTextField.text else { return print("Неверные данные!")  }
+        do {
+            guard let inspetcor = delegate else { return }
+            guard let loginText = emailTextField.text, let passwordText = passwordTextField.text else { throw LoginError.invalidLogin  }
+            
+            let login = inspetcor.loginCheck(log: loginText)
+            let password = inspetcor.pasCheck(pas: passwordText)
         
-        let login = inspetcor.loginCheck(log: loginText)
-        let password = inspetcor.pasCheck(pas: passwordText)
-    
-        if login == true && password == true{
+            if login == true && password == true{
+                
+                coordinator?.subscription()
+                
+    //            let vc = ProfileViewController()
+    //            navigationController?.pushViewController(vc, animated: true)
+                
+            } else {
+                throw LoginError.invalidLogin
+
+            }
+        } catch LoginError.invalidLogin {
+            let alertController = UIAlertController(title: "Неверные данные!",
+                                                    message: "Вы ввели неверный логин или пароль. Попробуйте снова.",
+                                                    preferredStyle: .alert)
             
-            coordinator?.subscription()
-            
-//            let vc = ProfileViewController()
-//            navigationController?.pushViewController(vc, animated: true)
-            
-        } else {
-            print("Неверные данные!")
+            let cancelAction = UIAlertAction(title: "OK",
+                                             style: .cancel,
+                                             handler: { _ in
+                print("OK")
+            })
+            alertController.addAction(cancelAction)
+            self.present(alertController, animated: true, completion: nil)
         }
 
     }
